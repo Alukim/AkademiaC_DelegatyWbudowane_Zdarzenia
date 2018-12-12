@@ -44,10 +44,10 @@ namespace AkademiaC_DelegatyWbudowane_Zdarzenia
                     introducer = new Converter();
                     break;
                 case "6":
-                    introducer = new Delegates();
+                    introducer = new Comparision();
                     break;
                 case "7":
-                    introducer = new Delegates();
+                    introducer = new Events();
                     break;
                 default:
                     introducer = new Delegates();
