@@ -55,9 +55,6 @@ namespace AkademiaC_DelegatyWbudowane_Zdarzenia
             }
 
             introducer.Introduce();
-
-            Action Make = () => { Console.WriteLine(123); };
-            Action<int> Make2 = (x) => { Console.WriteLine(x); };
         }
     }
 }
