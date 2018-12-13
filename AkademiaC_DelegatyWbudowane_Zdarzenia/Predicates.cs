@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AkademiaC_DelegatyWbudowane_Zdarzenia
 {
@@ -40,7 +41,7 @@ namespace AkademiaC_DelegatyWbudowane_Zdarzenia
         private void Collection()
         {
             Predicate<Person> predicateMethod = MoreThan22;
-            Person[] lstPeople =
+            List<Person> lstPeople = new List<Person>
             {
                 new Person(){ Name = "Tomek", Age = 23},
                 new Person(){ Name = "Franko", Age = 21},
@@ -48,7 +49,8 @@ namespace AkademiaC_DelegatyWbudowane_Zdarzenia
                 new Person(){ Name = "Alicja", Age = 19},
             };
 
-            var tempPerson = Array.Find(lstPeople, predicateMethod);
+            //var tempPerson = Array.Find(lstPeople, predicateMethod);
+            var tempPerson = lstPeople.Find(MoreThan22);
             Console.WriteLine("Person older than 22 is :" + tempPerson.Name);
             Console.ReadKey();
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,8 +10,6 @@ namespace AkademiaC_DelegatyWbudowane_Zdarzenia
     public class Funcs : IIntroducer
     {
         public delegate void ShowDelegate(string text);
-
-        public delegate bool CalculateLeapYear(int year);
 
         public void Introduce()
         {
@@ -33,7 +32,7 @@ namespace AkademiaC_DelegatyWbudowane_Zdarzenia
             else
                 showMethod = Methods.ShowBlueText;
 
-            CalculateLeapYear calculateLeapYearMethod = (year) => DateTime.IsLeapYear(year);
+            Func<int, bool> calculateLeapYearMethod = (year) => DateTime.IsLeapYear(year);
 
             var cannotConvert = false;
             var userYear = 0;
@@ -56,13 +55,10 @@ namespace AkademiaC_DelegatyWbudowane_Zdarzenia
 
         public static void CalculateAndWrite(
             ShowDelegate showDelegate,
-            CalculateLeapYear calculateLeapYear,
+            Func<int, bool> calculateLeapYear,
             int year)
         {
-            if (calculateLeapYear(year))
-                showDelegate("Is a leap year.");
-            else
-                showDelegate("Is not a leap year.");
+            showDelegate(calculateLeapYear(year) ? "Is a leap year." : "Is not a leap year.");
         }
     }
 }

@@ -10,7 +10,7 @@ namespace AkademiaC_DelegatyWbudowane_Zdarzenia
     {
         public delegate void ShowDelegate(string text);
 
-        public delegate bool CalculateLeapYear(int year);
+        public delegate bool CalculateLeapDate(int year);
 
         public void Introduce()
         {
@@ -26,14 +26,16 @@ namespace AkademiaC_DelegatyWbudowane_Zdarzenia
             }
             Console.Clear();
 
-            ShowDelegate showMethod;
+            ShowDelegate show;
 
             if (f == "1")
-                showMethod = Methods.ShowPinkText;
+            {
+                show = Methods.ShowPinkText;
+            }
             else
-                showMethod = Methods.ShowBlueText;
-
-            CalculateLeapYear calculateLeapYearMethod = (year) => DateTime.IsLeapYear(year);
+            {
+                show = Methods.ShowBlueText;
+            }
 
             var cannotConvert = false;
             var userYear = 0;
@@ -45,24 +47,28 @@ namespace AkademiaC_DelegatyWbudowane_Zdarzenia
                 cannotConvert = int.TryParse(f, out userYear);
             }
 
+            CalculateLeapDate calculateDate = (year) => DateTime.IsLeapYear(year); 
+
             Console.Clear();
 
+            // Calculate and write
             CalculateAndWrite(
-                showDelegate: showMethod,
-                calculateLeapYear: calculateLeapYearMethod,
+                show: show,
+                calculateLeap: calculateDate,
                 year: userYear);
+
             Console.ReadKey();
         }
 
-        public static void CalculateAndWrite(
-            ShowDelegate showDelegate,
-            CalculateLeapYear calculateLeapYear,
+        private void CalculateAndWrite(
+            ShowDelegate show,
+            CalculateLeapDate calculateLeap,
             int year)
         {
-            if (calculateLeapYear(year))
-                showDelegate("Is a leap year.");
+            if (calculateLeap(year))
+                show("It's a leap year");
             else
-                showDelegate("Is not a leap year.");
+                show("It's not a leap yaer");
         }
     }
 }

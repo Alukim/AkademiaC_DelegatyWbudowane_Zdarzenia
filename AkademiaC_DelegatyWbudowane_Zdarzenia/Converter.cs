@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AkademiaC_DelegatyWbudowane_Zdarzenia
 {
@@ -12,9 +8,18 @@ namespace AkademiaC_DelegatyWbudowane_Zdarzenia
         {
             var list = Methods.GenerateListOfPerson();
 
-            var newList = new List<string>();
+            Converter<Person, string> converter = Convert;
+
+            var newList = list.ConvertAll(converter);
 
             Methods.ShowList(newList);
+
+            Console.ReadKey();
+        }
+
+        public string Convert(Person person)
+        {
+            return $"{person.Name} : {person.Age}";
         }
 
     }

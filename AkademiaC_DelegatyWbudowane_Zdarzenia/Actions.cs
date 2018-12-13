@@ -4,7 +4,6 @@ namespace AkademiaC_DelegatyWbudowane_Zdarzenia
 {
     public class Actions : IIntroducer
     {
-        public delegate void ShowDelegate(string text);
         public void Introduce()
         {
             var f = "";
@@ -19,7 +18,7 @@ namespace AkademiaC_DelegatyWbudowane_Zdarzenia
             }
             Console.Clear();
 
-            ShowDelegate showMethod;
+            Action<string> showMethod;
 
             if (f == "1")
                 showMethod = Methods.ShowPinkText;
@@ -48,7 +47,7 @@ namespace AkademiaC_DelegatyWbudowane_Zdarzenia
         }
 
         public static void CalculateAndWrite(
-            ShowDelegate showDelegate,
+            Action<string> showDelegate,
             Func<int, bool> calculateLeapYear,
             int year)
         {
